@@ -236,3 +236,37 @@ ul {
   font-size: 0.85em;
   color: var(--gold-bright);
 }
+
+.media-status {
+  margin: 0 0 2rem;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.media-status--error {
+  color: #e08a8a;
+}
+
+.media-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.media-more button {
+  padding: 0.85rem 1.5rem;
+  border: 1px solid var(--line);
+  color: var(--gold-bright);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  transition:
+    border-color 0.25s var(--ease),
+    color 0.25s var(--ease),
+    background 0.25s var(--ease);
+}
+
+.media-more button:hover {
+  border-color: var(--gold);
+  background: rgba(196, 163, 90, 0.08);
+}

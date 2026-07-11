@@ -33,47 +33,19 @@ export const about = {
   ],
 }
 
-/** Add race photos here later. Example:
- *  { src: '/gallery/race-1.jpg', caption: 'Spa endurance — hour 3', alt: 'CRT cars at Eau Rouge' }
- */
+/** Race photos are loaded from /public/data/gallery.json (see scripts/sync-iracing-media.py). */
 export type GalleryItem = {
   src: string
   caption: string
   alt: string
 }
 
-export const galleryItems: GalleryItem[] = [
-  {
-    src: '/gallery/aston-pair-glen.png',
-    caption: 'Chimera Astons running together — Watkins Glen',
-    alt: 'Two Chimera Racing Team Aston Martin Vantage GT3 cars on track at Watkins Glen',
-  },
-  {
-    src: '/gallery/spa-aston-pair.png',
-    caption: 'Gold liveries through the curves at Spa-Francorchamps',
-    alt: 'Two Chimera Racing Team Aston Martin GT3 cars navigating a turn at Spa-Francorchamps',
-  },
-  {
-    src: '/gallery/car-7-airborne.png',
-    caption: 'Car #7 catching air — Think Different',
-    alt: 'Chimera Racing Team car number 7 airborne over a curb in iRacing',
-  },
-]
-
-/** Add event posters / promo graphics here. */
+/** Event posters are loaded from /public/data/posters.json (see scripts/sync-iracing-media.py). */
 export type PosterItem = {
   src: string
   caption: string
   alt: string
 }
-
-export const posterItems: PosterItem[] = [
-  {
-    src: '/posters/spa-24-lineup.png',
-    caption: 'Spa 24 Falken Special Event — cars #05 & #04',
-    alt: 'Chimera Racing Team Spa 24 promotional graphic with driver lineups for cars 05 and 04',
-  },
-]
 
 /** Race results live in ./results.ts */
 export type { RaceEntry, RaceResult } from './results'
