@@ -1,0 +1,109 @@
+.results {
+  min-height: 100vh;
+  padding: calc(var(--nav-h) + 3rem) 1.5rem 5rem;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(196, 163, 90, 0.08), transparent 55%),
+    var(--bg);
+}
+
+.results__years {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.results__year-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.results__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.results__race-head {
+  margin-bottom: 0.85rem;
+}
+
+.results__event {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin-bottom: 0.35rem;
+}
+
+.results__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+.results__entries-wrap {
+  overflow-x: auto;
+  border-top: 1px solid rgba(196, 163, 90, 0.14);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.results__entries {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 420px;
+}
+
+.results__entries th,
+.results__entries td {
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.results__entries th {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+.results__entries td {
+  font-size: 0.92rem;
+  color: var(--silver);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.results__entries tbody tr {
+  transition: background 0.25s var(--ease);
+}
+
+.results__entries tbody tr:hover {
+  background: rgba(196, 163, 90, 0.05);
+}
+
+.results__car {
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+.results__place {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--gold-bright);
+  white-space: nowrap;
+}

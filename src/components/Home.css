@@ -1,0 +1,231 @@
+.home {
+  overflow: hidden;
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--nav-h) + 2rem) 1.5rem 4rem;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(196, 163, 90, 0.12), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(255, 255, 255, 0.03), transparent 50%),
+    var(--bg);
+}
+
+.hero__glow {
+  position: absolute;
+  width: min(70vw, 520px);
+  height: min(70vw, 520px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 163, 90, 0.18), transparent 68%);
+  filter: blur(40px);
+  animation: fade-in 1.4s var(--ease) both;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 40rem;
+}
+
+.hero__logo {
+  width: min(58vw, 280px);
+  height: auto;
+  margin-bottom: 1.75rem;
+  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.65));
+  animation: logo-in 1s var(--ease) both;
+}
+
+.hero__brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 8vw, 4.25rem);
+  line-height: 1.05;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  animation: fade-up 0.9s var(--ease) 0.15s both;
+}
+
+.hero__brand span {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.38em;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  color: var(--silver);
+}
+
+.hero__tagline {
+  margin-top: 1.25rem;
+  max-width: 28rem;
+  font-size: clamp(1rem, 2.4vw, 1.15rem);
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  animation: fade-up 0.9s var(--ease) 0.28s both;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  animation: fade-up 0.9s var(--ease) 0.4s both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.85rem;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn--primary {
+  background: var(--gold);
+  color: #0a0a0a;
+}
+
+.btn--primary:hover {
+  background: var(--gold-bright);
+}
+
+.btn--ghost {
+  border: 1px solid var(--line);
+  color: var(--gold);
+}
+
+.btn--ghost:hover {
+  border-color: var(--gold);
+  background: rgba(196, 163, 90, 0.08);
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  animation: fade-in 1s var(--ease) 0.8s both;
+}
+
+.hero__scroll::after {
+  content: '';
+  width: 1px;
+  height: 2rem;
+  background: linear-gradient(to bottom, var(--gold-dim), transparent);
+  animation: scroll-line 1.8s ease-in-out infinite;
+}
+
+@keyframes scroll-line {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleY(0.7);
+    transform-origin: top;
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+.about {
+  position: relative;
+  padding: 6rem 1.5rem 7rem;
+  background:
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 40%, var(--bg) 100%);
+  border-top: 1px solid rgba(196, 163, 90, 0.12);
+}
+
+.about__inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.about .section-title {
+  margin-bottom: 1.5rem;
+}
+
+.about__lead {
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-weight: 300;
+  color: var(--silver);
+  margin-bottom: 1.5rem;
+  max-width: 42rem;
+}
+
+.about__copy {
+  display: grid;
+  gap: 1rem;
+  color: var(--muted);
+  max-width: 42rem;
+  margin-bottom: 3.5rem;
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem 1.75rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.pillar h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.65rem;
+}
+
+.pillar p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+@media (max-width: 760px) {
+  .pillars {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .hero__actions {
+    width: 100%;
+  }
+
+  .btn {
+    flex: 1 1 auto;
+  }
+}

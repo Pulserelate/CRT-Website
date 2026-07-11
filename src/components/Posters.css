@@ -1,0 +1,33 @@
+.posters {
+  min-height: 100vh;
+  padding: calc(var(--nav-h) + 3rem) 1.5rem 5rem;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(196, 163, 90, 0.08), transparent 55%),
+    var(--bg);
+}
+
+.posters__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.posters__item figure {
+  margin: 0;
+  background: var(--bg-soft);
+  border: 1px solid rgba(196, 163, 90, 0.12);
+}
+
+.posters__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.posters__item figcaption {
+  padding: 1rem 1.1rem 1.15rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
