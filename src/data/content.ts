@@ -52,42 +52,60 @@ export type { RaceEntry, RaceResult } from './results'
 export { raceResults } from './results'
 
 /** Add bios/images later. Example:
- *  { name: 'Driver Name', role: 'Driver', platforms: ['ACC'], bio: '...', flag: '🇦🇺', image?: '/team/driver.jpg' }
+ *  { name: 'Driver Name', role: 'Driver', platforms: ['ACC'], flag: 'au', bio: '...', image?: '/team/driver.jpg' }
+ *  flag uses ISO codes (au, it, nl…) plus gb-eng / gb-sct for England / Scotland.
  */
 export type TeamMember = {
   name: string
   role: string
   bio?: string
+  /** ISO / subdivision flag code matching /public/flags/{code}.svg */
   flag?: string
   platforms: string[]
   image?: string
+}
+
+const FLAG_LABELS: Record<string, string> = {
+  au: 'Australia',
+  'gb-eng': 'England',
+  'gb-sct': 'Scotland',
+  in: 'India',
+  it: 'Italy',
+  lv: 'Latvia',
+  nl: 'Netherlands',
+  ph: 'Philippines',
+  se: 'Sweden',
+}
+
+export function flagLabel(code: string): string {
+  return FLAG_LABELS[code] ?? code
 }
 
 export const teamMembers: TeamMember[] = [
   { name: 'Albert Dreijer', role: 'Captain', platforms: ['iRacing'] },
   { name: 'Adam Lawson7', role: 'Driver', platforms: ['iRacing'] },
   { name: 'Ben Gilroy', role: 'Driver', platforms: ['iRacing'] },
-  { name: 'Blake Brenner', role: 'Driver', platforms: ['ACC'], flag: '🇦🇺' },
-  { name: 'Callum Blyth', role: 'Driver', platforms: ['ACC'], flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿' },
-  { name: 'Chris Davis', role: 'Driver', platforms: ['rF2', 'iRacing'], flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
-  { name: 'Daniel Scicluna', role: 'Driver', platforms: ['ACC'], flag: '🇦🇺' },
+  { name: 'Blake Brenner', role: 'Driver', platforms: ['ACC'], flag: 'au' },
+  { name: 'Callum Blyth', role: 'Driver', platforms: ['ACC'], flag: 'gb-sct' },
+  { name: 'Chris Davis', role: 'Driver', platforms: ['rF2', 'iRacing'], flag: 'gb-eng' },
+  { name: 'Daniel Scicluna', role: 'Driver', platforms: ['ACC'], flag: 'au' },
   { name: 'Filippo Ingoglia', role: 'Driver', platforms: ['iRacing'] },
   { name: 'Gosha Vershinin', role: 'Driver', platforms: ['iRacing'] },
   { name: 'Hamilton Six', role: 'Driver', platforms: ['iRacing'] },
-  { name: 'Kris Deximo', role: 'Driver', platforms: ['ACC'], flag: '🇵🇭' },
+  { name: 'Kris Deximo', role: 'Driver', platforms: ['ACC'], flag: 'ph' },
   { name: 'Kyle Hardaway', role: 'Driver', platforms: ['iRacing'] },
-  { name: 'Lance Simmons', role: 'Driver', platforms: ['ACC'], flag: '🇱🇻' },
-  { name: 'Leila Bell', role: 'Driver', platforms: ['ACC'], flag: '🇦🇺' },
+  { name: 'Lance Simmons', role: 'Driver', platforms: ['ACC'], flag: 'lv' },
+  { name: 'Leila Bell', role: 'Driver', platforms: ['ACC'], flag: 'au' },
   { name: 'Luca Masera', role: 'Driver', platforms: ['iRacing'] },
   { name: 'Luke Titcombe', role: 'Driver', platforms: ['iRacing'] },
   { name: 'Marc Mas2', role: 'Driver', platforms: ['iRacing'] },
-  { name: 'Mark Kerkhoff', role: 'Driver', platforms: ['ACC'], flag: '🇳🇱' },
+  { name: 'Mark Kerkhoff', role: 'Driver', platforms: ['ACC'], flag: 'nl' },
   { name: 'Mateusz Kilian', role: 'Driver', platforms: ['iRacing'] },
   { name: 'Nathan Barratt', role: 'Driver', platforms: ['iRacing'] },
-  { name: 'Rafael Århem', role: 'Driver', platforms: ['rF2'], flag: '🇸🇪' },
+  { name: 'Rafael Århem', role: 'Driver', platforms: ['rF2'], flag: 'se' },
   { name: 'Raihan Chowdhury', role: 'Driver', platforms: ['iRacing'] },
-  { name: 'Riccardo Busani', role: 'Driver', platforms: ['rF2'], flag: '🇮🇹' },
-  { name: 'Srinjay Das', role: 'Driver', platforms: ['ACC'], flag: '🇮🇳' },
-  { name: 'Tom Morris-Jones', role: 'Driver', platforms: ['ACC'], flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
+  { name: 'Riccardo Busani', role: 'Driver', platforms: ['rF2'], flag: 'it' },
+  { name: 'Srinjay Das', role: 'Driver', platforms: ['ACC'], flag: 'in' },
+  { name: 'Tom Morris-Jones', role: 'Driver', platforms: ['ACC'], flag: 'gb-eng' },
   { name: 'Travis L Austin', role: 'Driver', platforms: ['iRacing'] },
 ]

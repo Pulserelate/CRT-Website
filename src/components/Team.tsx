@@ -1,4 +1,4 @@
-import { teamMembers } from '../data/content'
+import { flagLabel, teamMembers } from '../data/content'
 import type { TeamMember } from '../data/content'
 import './Team.css'
 
@@ -23,9 +23,16 @@ function MemberCard({ member }: { member: TeamMember }) {
         <h3 className="team__name">
           {member.name}
           {member.flag ? (
-            <span className="team__flag" aria-hidden="true">
-              {member.flag}
-            </span>
+            <img
+              className="team__flag"
+              src={`${import.meta.env.BASE_URL}flags/${member.flag}.svg`}
+              alt={flagLabel(member.flag)}
+              title={flagLabel(member.flag)}
+              width={28}
+              height={18}
+              loading="lazy"
+              decoding="async"
+            />
           ) : null}
         </h3>
         <p className="team__platforms">{member.platforms.join(' · ')}</p>

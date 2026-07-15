@@ -82,10 +82,12 @@
 }
 
 .team__flag {
-  font-size: 1.15em;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: 0;
+  width: 1.35em;
+  height: 0.9em;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
 .team__bio {
