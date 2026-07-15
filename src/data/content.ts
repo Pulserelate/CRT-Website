@@ -52,31 +52,64 @@ export type { RaceEntry, RaceResult } from './results'
 export { raceResults } from './results'
 
 /** Add bios/images later. Example:
- *  { name: 'Driver Name', role: 'Driver', bio: '...', image?: '/team/driver.jpg' }
+ *  { name: 'Driver Name', role: 'Driver', bio: '...', flag: '🇦🇺', image?: '/team/driver.jpg' }
  */
 export type TeamMember = {
   name: string
   role: string
   bio?: string
+  flag?: string
   image?: string
 }
 
-export const teamMembers: TeamMember[] = [
-  { name: 'Albert Dreijer', role: 'Captain' },
-  { name: 'Adam Lawson7', role: 'Driver' },
-  { name: 'Gosha Vershinin', role: 'Driver' },
-  { name: 'Kyle Hardaway', role: 'Driver' },
-  { name: 'Mateusz Kilian', role: 'Driver' },
-  { name: 'Riccardo Busani', role: 'Driver' },
-  { name: 'Ben Gilroy', role: 'Driver' },
-  { name: 'Chris Davis16', role: 'Driver' },
-  { name: 'Filippo Ingoglia', role: 'Driver' },
-  { name: 'Hamilton Six', role: 'Driver' },
-  { name: 'Luca Masera', role: 'Driver' },
-  { name: 'Luke Titcombe', role: 'Driver' },
-  { name: 'Marc Mas2', role: 'Driver' },
-  { name: 'Mark Kerkhoff', role: 'Driver' },
-  { name: 'Nathan Barratt', role: 'Driver' },
-  { name: 'Raihan Chowdhury', role: 'Driver' },
-  { name: 'Travis L Austin', role: 'Driver' },
+export type TeamRoster = {
+  title: string
+  members: TeamMember[]
+}
+
+export const teamRosters: TeamRoster[] = [
+  {
+    title: 'ACC',
+    members: [
+      { name: 'Callum Blyth', role: 'Driver', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿' },
+      { name: 'Lance Simmons', role: 'Driver', flag: '🇱🇻' },
+      { name: 'Kris Deximo', role: 'Driver', flag: '🇵🇭' },
+      { name: 'Srinjay Das', role: 'Driver', flag: '🇮🇳' },
+      { name: 'Mark Kerkhoff', role: 'Driver', flag: '🇳🇱' },
+      { name: 'Leila Bell', role: 'Driver', flag: '🇦🇺' },
+      { name: 'Tom Morris-Jones', role: 'Driver', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
+      { name: 'Daniel Scicluna', role: 'Driver', flag: '🇦🇺' },
+      { name: 'Blake Brenner', role: 'Driver', flag: '🇦🇺' },
+    ],
+  },
+  {
+    title: 'rF2',
+    members: [
+      { name: 'Chris Davis', role: 'Driver', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
+      { name: 'Riccardo Busani', role: 'Driver', flag: '🇮🇹' },
+      { name: 'Rafael Århem', role: 'Driver', flag: '🇸🇪' },
+    ],
+  },
+  {
+    title: 'iRacing',
+    members: [
+      { name: 'Albert Dreijer', role: 'Captain' },
+      { name: 'Adam Lawson7', role: 'Driver' },
+      { name: 'Gosha Vershinin', role: 'Driver' },
+      { name: 'Kyle Hardaway', role: 'Driver' },
+      { name: 'Mateusz Kilian', role: 'Driver' },
+      { name: 'Ben Gilroy', role: 'Driver' },
+      { name: 'Filippo Ingoglia', role: 'Driver' },
+      { name: 'Hamilton Six', role: 'Driver' },
+      { name: 'Luca Masera', role: 'Driver' },
+      { name: 'Luke Titcombe', role: 'Driver' },
+      { name: 'Marc Mas2', role: 'Driver' },
+      { name: 'Nathan Barratt', role: 'Driver' },
+      { name: 'Raihan Chowdhury', role: 'Driver' },
+      { name: 'Travis L Austin', role: 'Driver' },
+    ],
+  },
 ]
+
+/** @deprecated Use teamRosters — kept for member count checks */
+export const teamMembers: TeamMember[] = teamRosters.flatMap((roster) => roster.members)
