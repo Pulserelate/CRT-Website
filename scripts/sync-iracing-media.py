@@ -15,13 +15,23 @@ BASE_URL = "https://raw.githubusercontent.com/Ememas07/MarcMasPictureDump/main/i
 POSTER_RE = re.compile(r"promo|poster|lineup|graphic|event|banner|special event", re.I)
 SERIES_RE = re.compile(r"\s*\(\d+\)\.png$", re.I)
 NUM_RE = re.compile(r"\((\d+)\)\.png$", re.I)
+# Liveries, memes, and studio shots — keep those out of the race gallery.
+SKIP_GALLERY_RE = re.compile(
+    r"livery|wip|showcase|meme|\bfinished\b|attempt|i got bored|"
+    r"rose gold version|cipher|cypher|miyabi|kayoko|abydos|alonso|"
+    r"new crt|old crt|teto mercedes|blue gem|lead the way|"
+    r"next gen nords grahh|ringmeister|seboing|holy avoidance|"
+    r"i found kayoko|flying indy|close to the wall|gt4 avoidance|"
+    r"mx5|gr86 crt|m2 livery|shakedown",
+    re.I,
+)
 ROOT = Path(__file__).resolve().parents[1]
 CLONE_DIR = ROOT / ".cache" / "MarcMasPictureDump"
 OUTPUT_DIR = ROOT / "public" / "data"
 
 
 def series_key(name: str) -> str:
-    """Group numbered shot variants of the same race/session together."""
+    """Strip trailing (N).png shot numbers."""
     return SERIES_RE.sub("", name).strip()
 
 
@@ -30,8 +40,27 @@ def shot_number(name: str) -> int:
     return int(match.group(1)) if match else 0
 
 
+def event_key(name: str) -> str:
+    """Collapse car/day/night/post-race variants of the same race weekend."""
+    text = re.sub(r"\.png$", "", series_key(name), flags=re.I).lower()
+    text = text.replace("petit le mans", "plm")
+    text = re.sub(r"\bd24\b", "daytona 24", text)
+    text = re.sub(r"\bcrt daytona 24\b", "daytona 24", text)
+    text = re.sub(r"#\d+\b", " ", text)
+    text = re.sub(r"\b(gtd|gtp|lmp[23]?|amr|evo|992|gt[34]|p\d+)\d*\b", " ", text)
+    text = re.sub(
+        r"\b(day|night|dry|wet|post race|pics?|pictures|shenanigans|flying|and|crashes)\b",
+        " ",
+        text,
+    )
+    text = re.sub(r"\b20\d{2}\b", " ", text)
+    text = re.sub(r"\b\d+\b", " ", text)
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
 def caption(name: str) -> str:
-    return series_key(name).replace(".png", "")
+    return re.sub(r"\.png$", "", series_key(name), flags=re.I)
 
 
 def alt_text(name: str) -> str:
@@ -46,11 +75,15 @@ def media_item(name: str) -> dict[str, str]:
     }
 
 
-def pick_one_per_series(names: list[str]) -> list[str]:
-    """Keep a single representative image for each race/session series."""
+def pick_one_per_race(names: list[str]) -> list[str]:
+    """Keep a single representative image for each race weekend."""
     best: dict[str, str] = {}
     for name in names:
-        key = series_key(name)
+        if SKIP_GALLERY_RE.search(series_key(name)):
+            continue
+        key = event_key(name)
+        if not key:
+            continue
         current = best.get(key)
         if current is None or shot_number(name) < shot_number(current):
             best[key] = name
@@ -102,7 +135,7 @@ def main() -> int:
         else:
             gallery_names.append(name)
 
-    gallery = [media_item(name) for name in pick_one_per_series(gallery_names)]
+    gallery = [media_item(name) for name in pick_one_per_race(gallery_names)]
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     write_json(OUTPUT_DIR / "gallery.json", gallery)
