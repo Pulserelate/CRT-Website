@@ -59,6 +59,7 @@ export type TeamMember = {
   role: string
   bio?: string
   flag?: string
+  platforms?: string[]
   image?: string
 }
 
@@ -85,7 +86,7 @@ export const teamRosters: TeamRoster[] = [
   {
     title: 'rF2',
     members: [
-      { name: 'Chris Davis', role: 'Driver', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
+      { name: 'Chris Davis', role: 'Driver', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', platforms: ['rF2', 'iRacing'] },
       { name: 'Riccardo Busani', role: 'Driver', flag: '🇮🇹' },
       { name: 'Rafael Århem', role: 'Driver', flag: '🇸🇪' },
     ],

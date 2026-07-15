@@ -20,6 +20,9 @@ function MemberCard({ member }: { member: TeamMember }) {
       </div>
       <div className="team__info">
         <p className="team__role">{member.role}</p>
+        {member.platforms?.length ? (
+          <p className="team__platforms">{member.platforms.join(' · ')}</p>
+        ) : null}
         <h3 className="team__name">
           {member.name}
           {member.flag ? (
