@@ -469,7 +469,7 @@ export const raceResults: RaceResult[] = [
     date: '2026-07-11',
     classes: 'GT3',
     entries: [
-      { car: '#04 AMR', result: 'P33', drivers: 'Chris, Gosha, Albert' },
+      { car: '#04 AMR', result: 'P29', drivers: 'Chris, Gosha, Albert' },
       { car: '#05 AMR', result: 'P19', drivers: 'Marc, Filippo, Hamilton' }
     ],
   },
