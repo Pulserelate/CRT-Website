@@ -20,12 +20,18 @@ CLONE_DIR = ROOT / ".cache" / "MarcMasPictureDump"
 OUTPUT_DIR = ROOT / "public" / "data"
 
 
-def caption(name: str) -> str:
-    series = SERIES_RE.sub("", name)
+def series_key(name: str) -> str:
+    """Group numbered shot variants of the same race/session together."""
+    return SERIES_RE.sub("", name).strip()
+
+
+def shot_number(name: str) -> int:
     match = NUM_RE.search(name)
-    if match:
-        return f"{series} — {match.group(1)}"
-    return series.replace(".png", "")
+    return int(match.group(1)) if match else 0
+
+
+def caption(name: str) -> str:
+    return series_key(name).replace(".png", "")
 
 
 def alt_text(name: str) -> str:
@@ -38,6 +44,17 @@ def media_item(name: str) -> dict[str, str]:
         "caption": caption(name),
         "alt": alt_text(name),
     }
+
+
+def pick_one_per_series(names: list[str]) -> list[str]:
+    """Keep a single representative image for each race/session series."""
+    best: dict[str, str] = {}
+    for name in names:
+        key = series_key(name)
+        current = best.get(key)
+        if current is None or shot_number(name) < shot_number(current):
+            best[key] = name
+    return [best[key] for key in sorted(best)]
 
 
 def ensure_clone() -> Path:
@@ -73,15 +90,19 @@ def write_json(path: Path, items: list[dict[str, str]]) -> None:
 
 def main() -> int:
     iracing = ensure_clone()
-    gallery: list[dict[str, str]] = []
+    gallery_names: list[str] = []
     posters: list[dict[str, str]] = []
 
     for name in sorted(os.listdir(iracing)):
         path = iracing / name
         if not path.is_file() or not name.lower().endswith(".png"):
             continue
-        target = posters if POSTER_RE.search(name) else gallery
-        target.append(media_item(name))
+        if POSTER_RE.search(name):
+            posters.append(media_item(name))
+        else:
+            gallery_names.append(name)
+
+    gallery = [media_item(name) for name in pick_one_per_series(gallery_names)]
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     write_json(OUTPUT_DIR / "gallery.json", gallery)
