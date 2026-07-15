@@ -25,7 +25,7 @@ export const raceResults: RaceResult[] = [
     length: '6hr',
     date: '2025-08-09',
     classes: 'GTP, LMP2, GTD',
-    entries: [{ car: '#04 LMP2', result: 'P7', drivers: 'Albert, Gosha, Ben G' }],
+    entries: [{ car: '#04 LMP2', result: 'P7', drivers: 'Albert, Gosha, Ben Gilroy' }],
   },
   {
     event: 'MS Charity Race',
@@ -54,7 +54,7 @@ export const raceResults: RaceResult[] = [
     classes: 'GTP, LMP2, GTD',
     entries: [
       { car: '#04 LMP2', result: 'P1', drivers: 'Albert, Gosha, Riccardo' },
-      { car: '#05 LMP2', result: 'P8', drivers: 'Marc, Ben E' },
+      { car: '#05 LMP2', result: 'P8', drivers: 'Marc, Ben Eley' },
     ],
   },
   {
@@ -253,9 +253,9 @@ export const raceResults: RaceResult[] = [
       {
         car: '#04 992',
         result: 'P3',
-        drivers: 'Marc, Luke, Max, Albert, Nathan*, Adam',
+        drivers: 'Marc, Luke, Max, Albert, Nathan, Adam',
       },
-      { car: '#05 992', result: 'P1', drivers: 'Riccardo, Gosha, Mateusz, Chris*' },
+      { car: '#05 992', result: 'P1', drivers: 'Riccardo, Gosha, Mateusz, Chris' },
     ],
   },
   {
@@ -459,6 +459,18 @@ export const raceResults: RaceResult[] = [
       { car: '#04 BMW', result: 'DNF', drivers: 'Chris, Gosha' },
       { car: '#05 AMR', result: 'P11', drivers: 'Albert, Marc' },
       { car: '#06 AMR', result: 'P3', drivers: 'Chukio, Filippo, Hamilton' },
+    ],
+  },
+  {
+    event: '24 Hours of Spa',
+    game: 'iRacing',
+    track: 'Spa Francorchamps',
+    length: '24hr',
+    date: '2026-07-11',
+    classes: 'GT3',
+    entries: [
+      { car: '#04 AMR', result: 'P33', drivers: 'Chris, Gosha, Albert' },
+      { car: '#05 AMR', result: 'P19', drivers: 'Marc, Filippo, Hamilton' }
     ],
   },
 ]
