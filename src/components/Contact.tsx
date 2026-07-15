@@ -23,7 +23,7 @@ export function Contact() {
 
           {discordReady ? (
             <a
-              className="btn btn--primary contact__cta"
+              className="contact__cta"
               href={contact.discordUrl}
               target="_blank"
               rel="noopener noreferrer"
