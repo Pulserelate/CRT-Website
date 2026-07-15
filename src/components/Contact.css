@@ -1,0 +1,37 @@
+.contact {
+  min-height: 100vh;
+  padding: calc(var(--nav-h) + 3rem) 1.5rem 5rem;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(196, 163, 90, 0.08), transparent 55%),
+    var(--bg);
+}
+
+.contact__panel {
+  max-width: 36rem;
+  padding-top: 0.5rem;
+}
+
+.contact__heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin-bottom: 0.75rem;
+}
+
+.contact__text {
+  color: var(--muted);
+  font-weight: 300;
+  margin-bottom: 1.75rem;
+  max-width: 32rem;
+}
+
+.contact__cta {
+  display: inline-flex;
+}
+
+.contact__empty {
+  margin-top: 0.5rem;
+}

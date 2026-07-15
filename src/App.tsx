@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import { Gallery } from './components/Gallery'
 import { Home } from './components/Home'
+import { Liveries } from './components/Liveries'
 import { Nav } from './components/Nav'
 import { Posters } from './components/Posters'
 import { Results } from './components/Results'
@@ -56,9 +58,11 @@ export default function App() {
       <main>
         {page === 'home' && <Home onNavigate={navigate} />}
         {page === 'gallery' && <Gallery />}
+        {page === 'liveries' && <Liveries />}
         {page === 'posters' && <Posters />}
         {page === 'results' && <Results />}
         {page === 'team' && <Team />}
+        {page === 'contact' && <Contact />}
       </main>
       <Footer />
     </>

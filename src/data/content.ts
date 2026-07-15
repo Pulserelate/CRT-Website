@@ -1,12 +1,19 @@
-export type PageId = 'home' | 'gallery' | 'posters' | 'results' | 'team'
+export type PageId = 'home' | 'gallery' | 'liveries' | 'posters' | 'results' | 'team' | 'contact'
 
 export const navItems: { id: PageId; label: string }[] = [
   { id: 'home', label: 'Home' },
   { id: 'gallery', label: 'Gallery' },
+  { id: 'liveries', label: 'Liveries' },
   { id: 'posters', label: 'Posters' },
   { id: 'results', label: 'Results' },
   { id: 'team', label: 'Team' },
+  { id: 'contact', label: 'Contact' },
 ]
+
+/** Paste the Discord invite URL when ready, e.g. 'https://discord.gg/…' */
+export const contact = {
+  discordUrl: '',
+}
 
 export const about = {
   founded: '2025',
