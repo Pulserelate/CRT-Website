@@ -75,6 +75,12 @@ const FLAG_LABELS: Record<string, string> = {
   nl: 'Netherlands',
   ph: 'Philippines',
   se: 'Sweden',
+  dk: 'Denmark',
+  es: 'Spain',
+  bd: 'Bangladesh',
+  ru: 'Russia',
+  pl: 'Poland',
+  us: 'United States',
 }
 
 export function flagLabel(code: string): string {
