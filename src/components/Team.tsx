@@ -1,4 +1,4 @@
-import { teamRosters } from '../data/content'
+import { teamMembers } from '../data/content'
 import type { TeamMember } from '../data/content'
 import './Team.css'
 
@@ -20,9 +20,6 @@ function MemberCard({ member }: { member: TeamMember }) {
       </div>
       <div className="team__info">
         <p className="team__role">{member.role}</p>
-        {member.platforms?.length ? (
-          <p className="team__platforms">{member.platforms.join(' · ')}</p>
-        ) : null}
         <h3 className="team__name">
           {member.name}
           {member.flag ? (
@@ -31,6 +28,7 @@ function MemberCard({ member }: { member: TeamMember }) {
             </span>
           ) : null}
         </h3>
+        <p className="team__platforms">{member.platforms.join(' · ')}</p>
         {member.bio ? <p className="team__bio">{member.bio}</p> : null}
       </div>
     </li>
@@ -38,7 +36,7 @@ function MemberCard({ member }: { member: TeamMember }) {
 }
 
 export function Team() {
-  const empty = teamRosters.every((roster) => roster.members.length === 0)
+  const empty = teamMembers.length === 0
 
   return (
     <div className="team page-enter">
@@ -63,22 +61,11 @@ export function Team() {
             <p>Driver and crew bios will live here once the roster is ready to publish.</p>
           </div>
         ) : (
-          <div className="team__rosters">
-            {teamRosters.map((roster) =>
-              roster.members.length === 0 ? null : (
-                <section key={roster.title} className="team__roster" aria-labelledby={`roster-${roster.title}`}>
-                  <h2 id={`roster-${roster.title}`} className="team__roster-title">
-                    {roster.title}
-                  </h2>
-                  <ul className="team__list">
-                    {roster.members.map((member) => (
-                      <MemberCard key={`${roster.title}-${member.name}`} member={member} />
-                    ))}
-                  </ul>
-                </section>
-              ),
-            )}
-          </div>
+          <ul className="team__list">
+            {teamMembers.map((member) => (
+              <MemberCard key={member.name} member={member} />
+            ))}
+          </ul>
         )}
       </div>
     </div>

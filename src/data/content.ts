@@ -52,65 +52,42 @@ export type { RaceEntry, RaceResult } from './results'
 export { raceResults } from './results'
 
 /** Add bios/images later. Example:
- *  { name: 'Driver Name', role: 'Driver', bio: '...', flag: '🇦🇺', image?: '/team/driver.jpg' }
+ *  { name: 'Driver Name', role: 'Driver', platforms: ['ACC'], bio: '...', flag: '🇦🇺', image?: '/team/driver.jpg' }
  */
 export type TeamMember = {
   name: string
   role: string
   bio?: string
   flag?: string
-  platforms?: string[]
+  platforms: string[]
   image?: string
 }
 
-export type TeamRoster = {
-  title: string
-  members: TeamMember[]
-}
-
-export const teamRosters: TeamRoster[] = [
-  {
-    title: 'ACC',
-    members: [
-      { name: 'Callum Blyth', role: 'Driver', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿' },
-      { name: 'Lance Simmons', role: 'Driver', flag: '🇱🇻' },
-      { name: 'Kris Deximo', role: 'Driver', flag: '🇵🇭' },
-      { name: 'Srinjay Das', role: 'Driver', flag: '🇮🇳' },
-      { name: 'Mark Kerkhoff', role: 'Driver', flag: '🇳🇱' },
-      { name: 'Leila Bell', role: 'Driver', flag: '🇦🇺' },
-      { name: 'Tom Morris-Jones', role: 'Driver', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
-      { name: 'Daniel Scicluna', role: 'Driver', flag: '🇦🇺' },
-      { name: 'Blake Brenner', role: 'Driver', flag: '🇦🇺' },
-    ],
-  },
-  {
-    title: 'rF2',
-    members: [
-      { name: 'Chris Davis', role: 'Driver', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', platforms: ['rF2', 'iRacing'] },
-      { name: 'Riccardo Busani', role: 'Driver', flag: '🇮🇹' },
-      { name: 'Rafael Århem', role: 'Driver', flag: '🇸🇪' },
-    ],
-  },
-  {
-    title: 'iRacing',
-    members: [
-      { name: 'Albert Dreijer', role: 'Captain' },
-      { name: 'Adam Lawson7', role: 'Driver' },
-      { name: 'Gosha Vershinin', role: 'Driver' },
-      { name: 'Kyle Hardaway', role: 'Driver' },
-      { name: 'Mateusz Kilian', role: 'Driver' },
-      { name: 'Ben Gilroy', role: 'Driver' },
-      { name: 'Filippo Ingoglia', role: 'Driver' },
-      { name: 'Hamilton Six', role: 'Driver' },
-      { name: 'Luca Masera', role: 'Driver' },
-      { name: 'Luke Titcombe', role: 'Driver' },
-      { name: 'Marc Mas2', role: 'Driver' },
-      { name: 'Nathan Barratt', role: 'Driver' },
-      { name: 'Raihan Chowdhury', role: 'Driver' },
-      { name: 'Travis L Austin', role: 'Driver' },
-    ],
-  },
+export const teamMembers: TeamMember[] = [
+  { name: 'Albert Dreijer', role: 'Captain', platforms: ['iRacing'] },
+  { name: 'Adam Lawson7', role: 'Driver', platforms: ['iRacing'] },
+  { name: 'Ben Gilroy', role: 'Driver', platforms: ['iRacing'] },
+  { name: 'Blake Brenner', role: 'Driver', platforms: ['ACC'], flag: '🇦🇺' },
+  { name: 'Callum Blyth', role: 'Driver', platforms: ['ACC'], flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿' },
+  { name: 'Chris Davis', role: 'Driver', platforms: ['rF2', 'iRacing'], flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
+  { name: 'Daniel Scicluna', role: 'Driver', platforms: ['ACC'], flag: '🇦🇺' },
+  { name: 'Filippo Ingoglia', role: 'Driver', platforms: ['iRacing'] },
+  { name: 'Gosha Vershinin', role: 'Driver', platforms: ['iRacing'] },
+  { name: 'Hamilton Six', role: 'Driver', platforms: ['iRacing'] },
+  { name: 'Kris Deximo', role: 'Driver', platforms: ['ACC'], flag: '🇵🇭' },
+  { name: 'Kyle Hardaway', role: 'Driver', platforms: ['iRacing'] },
+  { name: 'Lance Simmons', role: 'Driver', platforms: ['ACC'], flag: '🇱🇻' },
+  { name: 'Leila Bell', role: 'Driver', platforms: ['ACC'], flag: '🇦🇺' },
+  { name: 'Luca Masera', role: 'Driver', platforms: ['iRacing'] },
+  { name: 'Luke Titcombe', role: 'Driver', platforms: ['iRacing'] },
+  { name: 'Marc Mas2', role: 'Driver', platforms: ['iRacing'] },
+  { name: 'Mark Kerkhoff', role: 'Driver', platforms: ['ACC'], flag: '🇳🇱' },
+  { name: 'Mateusz Kilian', role: 'Driver', platforms: ['iRacing'] },
+  { name: 'Nathan Barratt', role: 'Driver', platforms: ['iRacing'] },
+  { name: 'Rafael Århem', role: 'Driver', platforms: ['rF2'], flag: '🇸🇪' },
+  { name: 'Raihan Chowdhury', role: 'Driver', platforms: ['iRacing'] },
+  { name: 'Riccardo Busani', role: 'Driver', platforms: ['rF2'], flag: '🇮🇹' },
+  { name: 'Srinjay Das', role: 'Driver', platforms: ['ACC'], flag: '🇮🇳' },
+  { name: 'Tom Morris-Jones', role: 'Driver', platforms: ['ACC'], flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
+  { name: 'Travis L Austin', role: 'Driver', platforms: ['iRacing'] },
 ]
-
-/** @deprecated Use teamRosters — kept for member count checks */
-export const teamMembers: TeamMember[] = teamRosters.flatMap((roster) => roster.members)
