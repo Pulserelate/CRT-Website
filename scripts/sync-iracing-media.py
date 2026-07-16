@@ -67,8 +67,8 @@ def event_key(name: str) -> str:
 
 def caption(name: str) -> str:
     stem = Path(name).stem
-    stem = SERIES_RE.sub("", f"{stem}.png").removesuffix(".png").strip()
-    return re.sub(r"[-_]+", " ", stem).strip()
+    stem = re.sub(r"\s*\(\d+\)$", "", stem).strip()
+    return stem.replace("_", " ").strip()
 
 
 def alt_text(name: str, kind: str = "iRacing") -> str:
