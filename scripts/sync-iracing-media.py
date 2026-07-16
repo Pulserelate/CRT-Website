@@ -12,7 +12,9 @@ from urllib.parse import quote
 
 REPO = "https://github.com/Ememas07/MarcMasPictureDump.git"
 BASE_URL = "https://raw.githubusercontent.com/Ememas07/MarcMasPictureDump/main/iRacing"
-POSTER_RE = re.compile(r"promo|poster|lineup|graphic|event|banner|special event", re.I)
+# Real event posters only — not "promo pictures" / prerace promo dumps.
+POSTER_RE = re.compile(r"poster", re.I)
+PROMO_RE = re.compile(r"promo", re.I)
 SERIES_RE = re.compile(r"\s*\(\d+\)\.png$", re.I)
 NUM_RE = re.compile(r"\((\d+)\)\.png$", re.I)
 # Liveries, memes, and studio shots — keep those out of the race gallery.
@@ -90,6 +92,15 @@ def pick_one_per_race(names: list[str]) -> list[str]:
     return [best[key] for key in sorted(best)]
 
 
+def is_poster(name: str) -> bool:
+    """Event posters only — exclude promo photo sets even if named 'promo poster'."""
+    return bool(POSTER_RE.search(name)) and not bool(PROMO_RE.search(name))
+
+
+def is_promo(name: str) -> bool:
+    return bool(PROMO_RE.search(name))
+
+
 def ensure_clone() -> Path:
     iracing = CLONE_DIR / "iRacing"
     if iracing.is_dir():
@@ -130,8 +141,11 @@ def main() -> int:
         path = iracing / name
         if not path.is_file() or not name.lower().endswith(".png"):
             continue
-        if POSTER_RE.search(name):
+        if is_poster(name):
             posters.append(media_item(name))
+        elif is_promo(name):
+            # Promo photo dumps stay out of both Posters and Gallery.
+            continue
         else:
             gallery_names.append(name)
 
