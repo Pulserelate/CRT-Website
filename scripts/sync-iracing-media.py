@@ -84,10 +84,11 @@ def media_item(name: str) -> dict[str, str]:
 
 
 def local_poster_item(path: Path) -> dict[str, str]:
+    label = caption(path.name).replace("-", " ")
     return {
         "src": f"/posters/{quote(path.name)}",
-        "caption": caption(path.name),
-        "alt": alt_text(path.name, kind="poster"),
+        "caption": label,
+        "alt": f"Chimera Racing Team poster — {label}",
     }
 
 
