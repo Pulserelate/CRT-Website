@@ -82,10 +82,12 @@ def media_item(name: str) -> dict[str, str]:
     }
 
 
-def local_poster_item(path: Path) -> dict[str, str]:
-    label = caption(path.name).replace("-", " ")
+def poster_item(name: str) -> dict[str, str]:
+    base = caption(name)
+    match = NUM_RE.search(name)
+    label = f"{base} — {match.group(1)}" if match else base
     return {
-        "src": f"/posters/{quote(path.name)}",
+        "src": f"{BASE_URL}/{quote(name)}",
         "caption": label,
         "alt": f"Chimera Racing Team poster — {label}",
     }
@@ -164,7 +166,7 @@ def main() -> int:
             gallery_names.append(name)
 
     gallery = [media_item(name) for name in pick_one_per_race(gallery_names)]
-    posters = [media_item(name) for name in poster_names]
+    posters = [poster_item(name) for name in poster_names]
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     write_json(OUTPUT_DIR / "gallery.json", gallery)
