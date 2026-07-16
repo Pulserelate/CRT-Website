@@ -69,7 +69,7 @@ export function Posters() {
               <span />
             </div>
             <h2>No posters yet</h2>
-            <p>Event posters and promo graphics will appear here.</p>
+            <p>Event posters will appear here soon.</p>
           </div>
         ) : (
           <>

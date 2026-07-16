@@ -47,7 +47,7 @@ export type GalleryItem = {
   alt: string
 }
 
-/** Event posters are loaded from /public/data/posters.json (files with "poster" in the name from the media dump). */
+/** Event posters are loaded from /public/data/posters.json (built from files in /public/posters/). */
 export type PosterItem = {
   src: string
   caption: string
