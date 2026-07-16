@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Generate gallery/posters manifests from MarcMasPictureDump iRacing images."""
+"""Generate gallery/posters manifests.
+
+Gallery race shots come from MarcMasPictureDump iRacing images.
+Event posters come from local files in public/posters/ (not promo photo dumps).
+"""
 
 from __future__ import annotations
 
@@ -12,11 +16,10 @@ from urllib.parse import quote
 
 REPO = "https://github.com/Ememas07/MarcMasPictureDump.git"
 BASE_URL = "https://raw.githubusercontent.com/Ememas07/MarcMasPictureDump/main/iRacing"
-# Real event posters only — not "promo pictures" / prerace promo dumps.
-POSTER_RE = re.compile(r"poster", re.I)
 PROMO_RE = re.compile(r"promo", re.I)
 SERIES_RE = re.compile(r"\s*\(\d+\)\.png$", re.I)
 NUM_RE = re.compile(r"\((\d+)\)\.png$", re.I)
+IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
 # Liveries, memes, and studio shots — keep those out of the race gallery.
 SKIP_GALLERY_RE = re.compile(
     r"livery|wip|showcase|meme|\bfinished\b|attempt|i got bored|"
@@ -30,6 +33,7 @@ SKIP_GALLERY_RE = re.compile(
 ROOT = Path(__file__).resolve().parents[1]
 CLONE_DIR = ROOT / ".cache" / "MarcMasPictureDump"
 OUTPUT_DIR = ROOT / "public" / "data"
+LOCAL_POSTERS_DIR = ROOT / "public" / "posters"
 
 
 def series_key(name: str) -> str:
@@ -62,11 +66,13 @@ def event_key(name: str) -> str:
 
 
 def caption(name: str) -> str:
-    return re.sub(r"\.png$", "", series_key(name), flags=re.I)
+    stem = Path(name).stem
+    stem = SERIES_RE.sub("", f"{stem}.png").removesuffix(".png").strip()
+    return re.sub(r"[-_]+", " ", stem).strip()
 
 
-def alt_text(name: str) -> str:
-    return f"Chimera Racing Team iRacing — {caption(name)}"
+def alt_text(name: str, kind: str = "iRacing") -> str:
+    return f"Chimera Racing Team {kind} — {caption(name)}"
 
 
 def media_item(name: str) -> dict[str, str]:
@@ -74,6 +80,14 @@ def media_item(name: str) -> dict[str, str]:
         "src": f"{BASE_URL}/{quote(name)}",
         "caption": caption(name),
         "alt": alt_text(name),
+    }
+
+
+def local_poster_item(path: Path) -> dict[str, str]:
+    return {
+        "src": f"/posters/{quote(path.name)}",
+        "caption": caption(path.name),
+        "alt": alt_text(path.name, kind="poster"),
     }
 
 
@@ -92,13 +106,18 @@ def pick_one_per_race(names: list[str]) -> list[str]:
     return [best[key] for key in sorted(best)]
 
 
-def is_poster(name: str) -> bool:
-    """Event posters only — exclude promo photo sets even if named 'promo poster'."""
-    return bool(POSTER_RE.search(name)) and not bool(PROMO_RE.search(name))
-
-
 def is_promo(name: str) -> bool:
     return bool(PROMO_RE.search(name))
+
+
+def load_local_posters() -> list[dict[str, str]]:
+    if not LOCAL_POSTERS_DIR.is_dir():
+        return []
+    items: list[dict[str, str]] = []
+    for path in sorted(LOCAL_POSTERS_DIR.iterdir()):
+        if path.is_file() and path.suffix.lower() in IMAGE_EXTS:
+            items.append(local_poster_item(path))
+    return items
 
 
 def ensure_clone() -> Path:
@@ -135,21 +154,18 @@ def write_json(path: Path, items: list[dict[str, str]]) -> None:
 def main() -> int:
     iracing = ensure_clone()
     gallery_names: list[str] = []
-    posters: list[dict[str, str]] = []
 
     for name in sorted(os.listdir(iracing)):
         path = iracing / name
         if not path.is_file() or not name.lower().endswith(".png"):
             continue
-        if is_poster(name):
-            posters.append(media_item(name))
-        elif is_promo(name):
-            # Promo photo dumps stay out of both Posters and Gallery.
+        if is_promo(name):
+            # Promo photo dumps stay out of Gallery (and are not posters).
             continue
-        else:
-            gallery_names.append(name)
+        gallery_names.append(name)
 
     gallery = [media_item(name) for name in pick_one_per_race(gallery_names)]
+    posters = load_local_posters()
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     write_json(OUTPUT_DIR / "gallery.json", gallery)

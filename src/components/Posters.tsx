@@ -44,7 +44,7 @@ export function Posters() {
           <p className="section-kicker">Race week art</p>
           <h1 className="section-title">Posters</h1>
           <p className="page-header__text">
-            Event graphics, lineup reveals, and promo art from Chimera race weekends.
+            Event graphics and lineup reveals from Chimera race weekends.
           </p>
         </header>
 
