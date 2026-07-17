@@ -88,6 +88,7 @@ const FLAG_LABELS: Record<string, string> = {
   ru: 'Russia',
   pl: 'Poland',
   us: 'United States',
+  ro: 'Romania',
 }
 
 export function flagLabel(code: string): string {
@@ -109,11 +110,14 @@ export const teamMembers: TeamMember[] = [
   { name: 'Kris Deximo', role: 'Driver', platforms: ['ACC'], flag: 'ph' },
   { name: 'Lance Simmons', role: 'Driver', platforms: ['ACC'], flag: 'lv' },
   { name: 'Leila Bell', role: 'Driver', platforms: ['ACC'], flag: 'au' },
+  { name: 'Luke Titcombe', role: 'Driver', platforms: ['iRacing'], flag: 'gb-eng' },
   { name: 'Marc Mas', role: 'Driver', platforms: ['iRacing'], flag: 'es' },
   { name: 'Mark Kerkhoff', role: 'Driver', platforms: ['ACC'], flag: 'nl' },
   { name: 'Mateusz Kilian', role: 'Driver', platforms: ['iRacing'], flag: 'pl' },
+  { name: 'Maxime Coschiera', role: 'Driver', platforms: ['ACC'], flag: 'fr' },
   { name: 'Nathan Barratt', role: 'Driver', platforms: ['iRacing'], flag: 'gb-eng' },
   { name: 'Rafael Århem', role: 'Driver', platforms: ['rF2'], flag: 'se' },
+  { name: 'Rareș Toma', role: 'Driver', platforms: ['rFactor 2'], flag: 'ro' },
   { name: 'Raihan Chowdhury', role: 'Driver', platforms: ['ACC', 'iRacing'], flag: 'bd' },
   { name: 'Riccardo Busani', role: 'Driver', platforms: ['rF2', 'iRacing'], flag: 'it' },
   { name: 'Srinjay Das', role: 'Driver', platforms: ['ACC'], flag: 'in' },
