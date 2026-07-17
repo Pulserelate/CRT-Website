@@ -6,10 +6,14 @@
     var(--bg);
 }
 
+.team .page-shell {
+  max-width: 1200px;
+}
+
 .team__list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem 2.75rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem 1.75rem;
   border-top: 1px solid var(--line);
   list-style: none;
   margin: 0;
@@ -68,6 +72,12 @@
   color: var(--muted);
   font-weight: 300;
   line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .team__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 560px) {
