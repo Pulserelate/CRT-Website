@@ -9,7 +9,7 @@
 .team__list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem 2rem;
+  gap: 2.5rem 2rem;
   border-top: 1px solid var(--line);
   list-style: none;
   margin: 0;
@@ -17,8 +17,11 @@
 }
 
 .team__member {
-  display: block;
-  padding: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 11rem;
+  padding: 1.5rem 0 2.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -37,27 +40,24 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
 .team__name {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.55rem;
   font-family: var(--font-display);
   font-size: clamp(1.35rem, 3vw, 1.7rem);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gold-bright);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.45rem;
 }
 
 .team__flag {
-  width: 1.35em;
-  height: 0.9em;
-  flex-shrink: 0;
+  display: block;
+  width: 1.75rem;
+  height: 1.15rem;
+  margin-bottom: 0.75rem;
   object-fit: cover;
   border-radius: 2px;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
@@ -67,6 +67,7 @@
   max-width: 40rem;
   color: var(--muted);
   font-weight: 300;
+  line-height: 1.55;
 }
 
 @media (max-width: 900px) {
