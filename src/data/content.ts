@@ -95,7 +95,7 @@ export function flagLabel(code: string): string {
 }
 
 export const teamMembers: TeamMember[] = [
-  { name: 'Albert Dreijer', role: 'Captain', platforms: ['iRacing'], flag: 'dk' },
+  { name: 'Albert Rathsach-Dreijer', role: 'Captain', platforms: ['iRacing'], flag: 'dk' },
   { name: 'Callum Blyth', role: 'Captain', platforms: ['ACC'], flag: 'gb-sct' },
   { name: 'Kyle Hardaway', role: 'Captain', platforms: ['iRacing'], flag: 'us' },
   { name: 'Adam Lawson', role: 'Driver', platforms: ['iRacing'], flag: 'gb-eng' },

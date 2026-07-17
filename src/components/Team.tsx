@@ -5,39 +5,22 @@ import './Team.css'
 function MemberCard({ member }: { member: TeamMember }) {
   return (
     <li className="team__member">
-      <div className="team__portrait">
-        {member.image ? (
-          <img src={member.image} alt="" />
-        ) : (
-          <div className="team__portrait-fallback" aria-hidden="true">
-            {member.name
-              .split(' ')
-              .map((n) => n[0])
-              .join('')
-              .slice(0, 2)}
-          </div>
-        )}
-      </div>
-      <div className="team__info">
-        <p className="team__role">{member.role}</p>
-        <h3 className="team__name">
-          {member.name}
-          {member.flag ? (
-            <img
-              className="team__flag"
-              src={`${import.meta.env.BASE_URL}flags/${member.flag}.svg`}
-              alt={flagLabel(member.flag)}
-              title={flagLabel(member.flag)}
-              width={28}
-              height={18}
-              loading="lazy"
-              decoding="async"
-            />
-          ) : null}
-        </h3>
-        <p className="team__platforms">{member.platforms.join(' · ')}</p>
-        {member.bio ? <p className="team__bio">{member.bio}</p> : null}
-      </div>
+      <p className="team__role">{member.role}</p>
+      <h3 className="team__name">{member.name}</h3>
+      {member.flag ? (
+        <img
+          className="team__flag"
+          src={`${import.meta.env.BASE_URL}flags/${member.flag}.svg`}
+          alt={flagLabel(member.flag)}
+          title={flagLabel(member.flag)}
+          width={28}
+          height={18}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : null}
+      <p className="team__platforms">{member.platforms.join(' · ')}</p>
+      {member.bio ? <p className="team__bio">{member.bio}</p> : null}
     </li>
   )
 }
