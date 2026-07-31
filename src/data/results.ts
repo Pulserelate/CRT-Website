@@ -472,5 +472,17 @@ export const raceResults: RaceResult[] = [
       { car: '#04 AMR', result: 'P29', drivers: 'Chris, Gosha, Albert' },
       { car: '#05 AMR', result: 'P19', drivers: 'Marc, Filippo, Hamilton' }
     ],
+  },{
+    event: '6 Hours of the Glen',
+    game: 'iRacing',
+    track: 'Watkins Glen',
+    length: '6hr',
+    date: '2026-06-20',
+    classes: 'GTP, LMP2, GTD',
+    entries: [
+      { car: '#04 LMP2', result: 'DNF', drivers: 'Albert, Adam, Ben Gilroy' },
+      { car: '#05 LMP2', result: 'P7', drivers: 'Riccardo, Gosha' },
+      { car: '#06 AMR', result: 'P24', drivers: 'Marc, Filippo, Mateusz' },
+    ],
   },
 ]
