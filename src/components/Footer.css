@@ -40,3 +40,27 @@
   color: var(--muted);
   font-weight: 300;
 }
+
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer__social-link {
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer__social-link:hover {
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.footer__icon {
+  width: 1.35rem;
+  height: 1.35rem;
+}
