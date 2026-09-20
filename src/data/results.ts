@@ -484,5 +484,15 @@ export const raceResults: RaceResult[] = [
       { car: '#05 LMP2', result: 'P7', drivers: 'Riccardo, Gosha' },
       { car: '#06 AMR', result: 'P24', drivers: 'Marc, Filippo, Mateusz' },
     ],
-  }
+  },
+  {
+    event: 'Britcar 24h',
+    game: 'iRacing',
+    track: 'Silverstone',
+    length: '24hr',
+    date: '2026-09-19',
+    dateEnd: '2026-09-20',
+    classes: 'GT3, GT4',
+    entries: [{ car: '#04 AMR GT3', result: 'P4', drivers: 'Albert, Gaspin, Hamilton' }],
+  },
 ]
