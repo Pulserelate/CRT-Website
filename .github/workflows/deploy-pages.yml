@@ -1,5 +1,7 @@
 name: Deploy to GitHub Pages
 
+# Production site (chimeraracingteam.com) deploys ONLY from main.
+# Staging / feature / PR branches must never trigger this workflow.
 on:
   push:
     branches: [main]
@@ -15,7 +17,19 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Allow production deploy from main only
+        run: |
+          if [ "${{ github.ref }}" != "refs/heads/main" ]; then
+            echo "Refusing deploy from ${{ github.ref }} — production Pages deploy is main-only."
+            exit 1
+          fi
+          echo "Deploy guard passed for main."
+
   build:
+    needs: guard
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
